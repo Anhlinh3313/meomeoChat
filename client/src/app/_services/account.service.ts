@@ -7,7 +7,7 @@ import { User } from '../_models/user';
   providedIn: 'root'
 })
 export class AccountService {
-  baseURL = "https://localhost:7085/api/";
+  baseURL = "https://localhost:5001/api/";
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable(); 
 
@@ -34,6 +34,7 @@ export class AccountService {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
         }
+        return user;
       })
     )
   }
